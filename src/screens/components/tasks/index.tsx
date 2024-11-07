@@ -3,12 +3,35 @@ import { styles } from "./stylesheet";
 type Props = {
   name: string;
   onRemove: () => void;
-  favorite: ()=> void;
+  favorite: () => boolean;
 }
-export function Participant({ name, onRemove }: Props) {
+export function Task({ name, onRemove, favorite }: Props) {
   return (
     <View style={styles.container}>
-        
+        <TouchableOpacity
+        onPress={favorite}
+        style={{
+          height: 24,
+          width: 24,
+          borderRadius: 4,
+          borderWidth: 2,
+          borderColor: '#333',
+          backgroundColor: favorite() ? '#333' : '#fff',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginRight: 8,
+        }}
+      >
+        {favorite() && (
+          <View
+            style={{
+              height: 12,
+              width: 12,
+              backgroundColor: '#fff',
+            }}
+          />
+        )}
+      </TouchableOpacity>
       <Text style={styles.name}>
       {name}
 
